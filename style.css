@@ -53,14 +53,6 @@ body{
 .carousel.no-transition{
   scroll-behavior: auto;
 }
-.carousel.dragging{
-  scroll-snap-type: none;
-  scroll-behavior: auto;
-}
-.carousel.dragging .card{
-  cursor: grab;
-  user-select: none;
-}
 .carousel .card{
   scroll-snap-align: start;
   list-style: none;

@@ -21,36 +21,6 @@ arrowBtns.forEach(btn => {
   });
 });
 
-const dragStart = (e) => {
-  isDragging = true;
-  carousel.classList.add("dragging");
-  startX = e.pageX;
-  startScrollLeft = carousel.scrollLeft;
-}
-
-const dragStop = (e) => {
-  isDragging = false;
-  carousel.classList.remove("dragging");
-}
-
-const dragging = (e) => {
-  if(!isDragging) return;
-  // Update scroll position based on the dragging movement
-  carousel.scrollLeft = startScrollLeft - (e.pageX - startX);
-
-  // Handle infinite scroll when dragging reaches the left or right boundary
-  if (carousel.scrollLeft <= 0) {
-    carousel.classList.add("no-transition");
-    carousel.scrollLeft = carousel.scrollWidth - 2 * carousel.offsetWidth;
-    carousel.classList.remove("no-transition");
-  } 
-  else if (carousel.scrollLeft >= carousel.scrollWidth - carousel.offsetWidth) {
-    carousel.classList.add("no-transition");
-    carousel.scrollLeft = carousel.offsetWidth;
-    carousel.classList.remove("no-transition");
-  }
-}
-
 const infiniteScroll = () => {
   if(carousel.scrollLeft === 0){
     carousel.classList.add("no-transition");
@@ -79,10 +49,4 @@ wrapper.addEventListener('mouseleave', () => {
 });
 
 startAutoplay();
-carousel.addEventListener("mousedown", dragStart);
-carousel.addEventListener("touchstart", dragStart);
-carousel.addEventListener("mousemove", dragging);
-carousel.addEventListener("touchmove", dragging);
-document.addEventListener("mouseup", dragStop);
-carousel.addEventListener("touchend", dragStop);
 carousel.addEventListener("scroll", infiniteScroll);
