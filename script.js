@@ -21,8 +21,17 @@ arrowBtns.forEach(btn => {
   });
 });
 
+const dragStart = (e) => {
+  isDragging = true;
+}
+
+const dragStop = (e) => {
+  isDragging = false;
+}
+
 const infiniteScroll = () => {
-  if(carousel.scrollLeft === 0){
+  if(isDragging) return;
+  else if(carousel.scrollLeft === 0){
     carousel.classList.add("no-transition");
     carousel.scrollLeft = carousel.scrollWidth - 2*carousel.offsetWidth;
     carousel.classList.remove("no-transition");
@@ -49,4 +58,6 @@ wrapper.addEventListener('mouseleave', () => {
 });
 
 startAutoplay();
+carousel.addEventListener("mousedown", dragStart);
+document.addEventListener("mouseup", dragStop);
 carousel.addEventListener("scroll", infiniteScroll);
