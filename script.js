@@ -80,6 +80,9 @@ wrapper.addEventListener('mouseleave', () => {
 
 startAutoplay();
 carousel.addEventListener("mousedown", dragStart);
+carousel.addEventListener("touchstart", dragStart);
 carousel.addEventListener("mousemove", dragging);
+carousel.addEventListener("touchmove", dragging);
 document.addEventListener("mouseup", dragStop);
+carousel.addEventListener("touchend", dragStop);
 carousel.addEventListener("scroll", infiniteScroll);
